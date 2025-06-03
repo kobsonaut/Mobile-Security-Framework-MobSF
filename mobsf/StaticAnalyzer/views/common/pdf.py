@@ -131,6 +131,8 @@ def pdf(request, checksum, api=False, jsonres=False):
                 if proxies['https']:
                     options['proxy'] = proxies['https']
                 html = template.render(context)
+                msg = str(html)
+                logger.info(msg)
                 pdf_dat = pdfkit.from_string(html, False, options=options)
                 if api:
                     return {'pdf_dat': pdf_dat}
