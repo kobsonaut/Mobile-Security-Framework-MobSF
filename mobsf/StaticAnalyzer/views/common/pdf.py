@@ -133,6 +133,8 @@ def pdf(request, checksum, api=False, jsonres=False):
                 html = template.render(context)
                 msg = str(html)
                 logger.info(msg)
+                with open("plik.txt", "a") as f:
+                    f.write(msg)
                 pdf_dat = pdfkit.from_string(html, False, options=options)
                 if api:
                     return {'pdf_dat': pdf_dat}
